@@ -4,16 +4,13 @@ import AttivitaPianificata from '../models/AttivitaPianificata.js';
 export const createAttivitaPianificata = async (req, res) => {
   try {
     const newAttivitaPianificata = await AttivitaPianificata.create({
-      id_attivita: req.body.id_attivita,
       id_piano: req.body.id_piano,
       id_lavorazione_progetto: req.body.id_lavorazione_progetto,
       data_ora_inizio: new Date(req.body.data_ora_inizio),
       data_ora_fine: new Date(req.body.data_ora_fine),
       note: req.body.note,
       priorita: req.body.priorita,
-      stato: req.body.stato,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      stato: req.body.stato
     });
     res.status(201).json(newAttivitaPianificata);
   } catch (error) {

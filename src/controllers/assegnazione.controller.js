@@ -4,15 +4,12 @@ import Assegnazione from '../models/Assegnazione.js';
 export const createAssegnazione = async (req, res) => {
   try {
     const newAssegnazione = await Assegnazione.create({
-      id_assegnazione: req.body.id_assegnazione,
       id_operaio: req.body.id_operaio,
       id_attivita: req.body.id_attivita,
       id_partecipazione_ditta: req.body.id_partecipazione_ditta,
       notifica_inviata: req.body.notifica_inviata ? new Date(req.body.notifica_inviata) : null,
       confermata: req.body.confermata,
-      note_operaio: req.body.note_operaio,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      note_operaio: req.body.note_operaio
     });
     res.status(201).json(newAssegnazione);
   } catch (error) {

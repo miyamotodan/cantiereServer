@@ -4,7 +4,6 @@ import Operaio from '../models/Operaio.js';
 export const createOperaio = async (req, res) => {
   try {
     const newOperaio = await Operaio.create({
-      id_operaio: req.body.id_operaio, // Se vuoi specificare l'ID manualmente
       id_ditta: req.body.id_ditta,
       nome: req.body.nome,
       cognome: req.body.cognome,
@@ -13,9 +12,7 @@ export const createOperaio = async (req, res) => {
       email: req.body.email,
       data_nascita: req.body.data_nascita ? new Date(req.body.data_nascita) : null,
       qualifiche: req.body.qualifiche,
-      attivo: req.body.attivo,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      attivo: req.body.attivo
     });
     res.status(201).json(newOperaio);
   } catch (error) {

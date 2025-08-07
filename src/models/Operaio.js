@@ -3,13 +3,13 @@ import sequelize from '../config/db.config.js';
 
 const Operaio = sequelize.define('Operaio', {
   id_operaio: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   id_ditta: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     // La relazione effettiva verrà definita in server.js o in un file di associazione
   },

@@ -3,13 +3,13 @@ import sequelize from '../config/db.config.js';
 
 const PianoLavoro = sequelize.define('PianoLavoro', {
   id_piano: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   id_cantiere: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     // La relazione effettiva verrà definita in server.js o in un file di associazione
   },
@@ -18,7 +18,7 @@ const PianoLavoro = sequelize.define('PianoLavoro', {
     allowNull: false,
   },
   versione: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     defaultValue: 1, // Versione iniziale
   },

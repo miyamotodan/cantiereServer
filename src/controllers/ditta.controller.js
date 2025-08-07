@@ -4,15 +4,12 @@ import Ditta from '../models/Ditta.js';
 export const createDitta = async (req, res) => {
   try {
     const newDitta = await Ditta.create({
-      id_ditta: req.body.id_ditta, // Se vuoi specificare l'ID manualmente
       ragione_sociale: req.body.ragione_sociale,
       partita_iva: req.body.partita_iva,
       telefono: req.body.telefono,
       email: req.body.email,
       indirizzo_sede: req.body.indirizzo_sede,
-      attiva: req.body.attiva,
-      createdAt: new Date(), // Imposta la data di creazione
-      updatedAt: new Date(), // Imposta la data di aggiornamento
+      attiva: req.body.attiva
     });
     res.status(201).json(newDitta);
   } catch (error) {

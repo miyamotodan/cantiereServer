@@ -4,7 +4,6 @@ import PartecipazioneDitta from "../models/PartecipazioneDitta.js";
 export const createPartecipazioneDitta = async (req, res) => {
   try {
     const newPartecipazioneDitta = await PartecipazioneDitta.create({
-      id_partecipazione: req.body.id_partecipazione, // Se vuoi specificare l'ID manualmente
       id_ditta: req.body.id_ditta,
       id_cantiere: req.body.id_cantiere,
       data_inizio_partecipazione: new Date(req.body.data_inizio_partecipazione),
@@ -12,9 +11,7 @@ export const createPartecipazioneDitta = async (req, res) => {
       ruolo_ditta: req.body.ruolo_ditta,
       responsabile_cantiere: req.body.responsabile_cantiere,
       budget_assegnato: req.body.budget_assegnato,
-      stato_partecipazione: req.body.stato_partecipazione,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      stato_partecipazione: req.body.stato_partecipazione
     });
     res.status(201).json(newPartecipazioneDitta);
   } catch (error) {

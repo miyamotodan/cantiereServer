@@ -3,10 +3,10 @@ import sequelize from '../config/db.config.js';
 
 const Ditta = sequelize.define('Ditta', {
   id_ditta: { // Corrisponde a 'id_ditta' nella tua definizione
-    type: DataTypes.NUMBER, // Nota: DataTypes.INTEGER è più comune per gli ID numerici
+    type: DataTypes.INTEGER, // Nota: DataTypes.INTEGER è più comune per gli ID numerici
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Generalmente si usa per gli ID primary key per farli generare automaticamente dal DB
+    autoIncrement: true // Generalmente si usa per gli ID primary key per farli generare automaticamente dal DB
   },
   ragione_sociale: {
     type: DataTypes.STRING,

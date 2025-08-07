@@ -4,15 +4,12 @@ import StrumentoAnagrafica from '../models/StrumentoAnagrafica.js';
 export const createStrumentoAnagrafica = async (req, res) => {
   try {
     const newStrumentoAnagrafica = await StrumentoAnagrafica.create({
-      id_strumento_anagrafica: req.body.id_strumento_anagrafica, // Se vuoi specificare l'ID manualmente
       nome_strumento: req.body.nome_strumento,
       tipo: req.body.tipo,
       categoria: req.body.categoria,
       richiede_certificazione: req.body.richiede_certificazione,
       descrizione_uso: req.body.descrizione_uso,
-      specifiche_tecniche: req.body.specifiche_tecniche,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      specifiche_tecniche: req.body.specifiche_tecniche
     });
     res.status(201).json(newStrumentoAnagrafica);
   } catch (error) {

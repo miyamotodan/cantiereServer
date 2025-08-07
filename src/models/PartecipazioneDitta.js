@@ -5,18 +5,18 @@ import sequelize from '../config/db.config.js';
 
 const PartecipazioneDitta = sequelize.define('PartecipazioneDitta', {
   id_partecipazione: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   id_ditta: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     // Qui non si definisce la relazione diretta, ma il tipo di dato della FK
   },
   id_cantiere: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     // Qui non si definisce la relazione diretta, ma il tipo di dato della FK
   },

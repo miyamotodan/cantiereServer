@@ -4,7 +4,6 @@ import Cantiere from '../models/Cantiere.js';
 export const createCantiere = async (req, res) => {
   try {
     const newCantiere = await Cantiere.create({
-      id_cantiere: req.body.id_cantiere, // Se vuoi specificare l'ID manualmente
       nome: req.body.nome,
       indirizzo: req.body.indirizzo,
       data_inizio: new Date(req.body.data_inizio),

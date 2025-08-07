@@ -3,21 +3,21 @@ import sequelize from '../config/db.config.js';
 
 const Assegnazione = sequelize.define('Assegnazione', {
   id_assegnazione: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   id_operaio: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
   },
   id_attivita: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
   },
   id_partecipazione_ditta: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
   },
   notifica_inviata: {

@@ -4,14 +4,11 @@ import LavorazioneAnagrafica from '../models/LavorazioneAnagrafica.js';
 export const createLavorazioneAnagrafica = async (req, res) => {
   try {
     const newLavorazioneAnagrafica = await LavorazioneAnagrafica.create({
-      id_lavorazione_anagrafica: req.body.id_lavorazione_anagrafica, // Se vuoi specificare l'ID manualmente
       nome_lavorazione: req.body.nome_lavorazione,
       descrizione: req.body.descrizione,
       tipo_categoria: req.body.tipo_categoria,
       livello_rischio_base: req.body.livello_rischio_base,
-      durata_standard_ore: req.body.durata_standard_ore,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      durata_standard_ore: req.body.durata_standard_ore
     });
     res.status(201).json(newLavorazioneAnagrafica);
   } catch (error) {

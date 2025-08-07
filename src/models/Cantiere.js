@@ -3,10 +3,10 @@ import sequelize from '../config/db.config.js';
 
 const Cantiere = sequelize.define('Cantiere', {
   id_cantiere: { // Corrisponde a 'id_cantiere' nella tua definizione
-    type: DataTypes.NUMBER, // Nota: DataTypes.INTEGER è più comune per gli ID numerici
+    type: DataTypes.INTEGER, // Nota: DataTypes.INTEGER è più comune per gli ID numerici
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Generalmente si usa per gli ID primary key per farli generare automaticamente dal DB
+    autoIncrement: true // Generalmente si usa per gli ID primary key per farli generare automaticamente dal DB
   },
   nome: {
     type: DataTypes.STRING,

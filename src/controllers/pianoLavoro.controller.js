@@ -4,13 +4,10 @@ import PianoLavoro from '../models/PianoLavoro.js';
 export const createPianoLavoro = async (req, res) => {
   try {
     const newPianoLavoro = await PianoLavoro.create({
-      id_piano: req.body.id_piano, // Se vuoi specificare l'ID manualmente
       id_cantiere: req.body.id_cantiere,
       nome_piano: req.body.nome_piano,
       versione: req.body.versione,
-      stato: req.body.stato,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      stato: req.body.stato
     });
     res.status(201).json(newPianoLavoro);
   } catch (error) {

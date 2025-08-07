@@ -3,10 +3,10 @@ import sequelize from '../config/db.config.js';
 
 const StrumentoAnagrafica = sequelize.define('StrumentoAnagrafica', {
   id_strumento_anagrafica: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   nome_strumento: {
     type: DataTypes.STRING,

@@ -29,7 +29,7 @@ Il progetto presenta un'architettura **MVC ben strutturata** per un sistema di g
 - **Duplicazione massiva**: ~90% codice duplicato tra controller
 - **Error handling generico**: Tutti gli errori trattati allo stesso modo
 - **Validazioni mancanti**: Nessun controllo su email, date, enum
-- **Tipi dati inconsistenti**: DataTypes.NUMBER invece di INTEGER
+- **Tipi dati inconsistenti**: DataTypes.INTEGER invece di INTEGER
 
 ### **Robustezza**
 - **Nessuna gestione transazioni**: Operazioni DB non atomiche
@@ -86,7 +86,7 @@ Il progetto ha **ottime fondamenta architetturali** ma è **totalmente inadatto 
 
 **Issues:**
 - User.js inconsistente con gli altri modelli
-- DataTypes.NUMBER invece di INTEGER per ID
+- DataTypes.INTEGER invece di INTEGER per ID
 - Mancano validazioni (email, enum, lunghezze)
 - AutoIncrement commentato ovunque
 - Constraints mancanti per campi critici
@@ -95,7 +95,7 @@ Il progetto ha **ottime fondamenta architetturali** ma è **totalmente inadatto 
 ```javascript
 // Problematico in tutti i model:
 id_cantiere: {
-  type: DataTypes.NUMBER, // Dovrebbe essere INTEGER
+  type: DataTypes.INTEGER, // Dovrebbe essere INTEGER
   allowNull: false,
   primaryKey: true,
   // autoIncrement: true // Commentato!

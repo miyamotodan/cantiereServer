@@ -4,15 +4,12 @@ import UtilizzoStandard from '../models/UtilizzoStandard.js';
 export const createUtilizzoStandard = async (req, res) => {
   try {
     const newUtilizzoStandard = await UtilizzoStandard.create({
-      id_utilizzo_standard: req.body.id_utilizzo_standard,
       id_lavorazione_anagrafica: req.body.id_lavorazione_anagrafica,
       id_strumento_anagrafica: req.body.id_strumento_anagrafica,
       quantita_standard: req.body.quantita_standard,
       obbligatorio_standard: req.body.obbligatorio_standard,
       modalita_utilizzo_standard: req.body.modalita_utilizzo_standard,
-      note: req.body.note,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      note: req.body.note
     });
     res.status(201).json(newUtilizzoStandard);
   } catch (error) {

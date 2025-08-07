@@ -3,17 +3,17 @@ import sequelize from '../config/db.config.js';
 
 const LavorazioneProgetto = sequelize.define('LavorazioneProgetto', {
   id_lavorazione_progetto: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   id_cantiere: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
   },
   id_lavorazione_anagrafica: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
   },
   nome_specifico: {
@@ -21,11 +21,11 @@ const LavorazioneProgetto = sequelize.define('LavorazioneProgetto', {
     allowNull: false,
   },
   durata_stimata_ore: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: true,
   },
   livello_rischio_progetto: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: true,
   },
   note_specifiche: {

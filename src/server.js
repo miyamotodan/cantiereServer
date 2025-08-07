@@ -91,7 +91,7 @@ const startServer = async () => {
     UtilizzoStandard.belongsTo(StrumentoAnagrafica, { foreignKey: 'id_strumento_anagrafica' });
 
 
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     console.log('Database sincronizzato con successo. Le tabelle sono state create.');
 
     app.listen(PORT, () => {

@@ -4,16 +4,13 @@ import LavorazioneProgetto from '../models/LavorazioneProgetto.js';
 export const createLavorazioneProgetto = async (req, res) => {
   try {
     const newLavorazioneProgetto = await LavorazioneProgetto.create({
-      id_lavorazione_progetto: req.body.id_lavorazione_progetto,
       id_cantiere: req.body.id_cantiere,
       id_lavorazione_anagrafica: req.body.id_lavorazione_anagrafica,
       nome_specifico: req.body.nome_specifico,
       durata_stimata_ore: req.body.durata_stimata_ore,
       livello_rischio_progetto: req.body.livello_rischio_progetto,
       note_specifiche: req.body.note_specifiche,
-      attiva: req.body.attiva,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      attiva: req.body.attiva
     });
     res.status(201).json(newLavorazioneProgetto);
   } catch (error) {

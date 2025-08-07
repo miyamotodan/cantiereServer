@@ -3,10 +3,10 @@ import sequelize from '../config/db.config.js';
 
 const LavorazioneAnagrafica = sequelize.define('LavorazioneAnagrafica', {
   id_lavorazione_anagrafica: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: false,
     primaryKey: true,
-    // autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
+    autoIncrement: true // Considera di abilitarlo se l'ID è generato automaticamente dal DB
   },
   nome_lavorazione: {
     type: DataTypes.STRING,
@@ -22,12 +22,12 @@ const LavorazioneAnagrafica = sequelize.define('LavorazioneAnagrafica', {
     allowNull: true // Potrebbe essere null o avere un valore predefinito
   },
   livello_rischio_base: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: true,
     defaultValue: 0 // Un valore predefinito per il rischio
   },
   durata_standard_ore: {
-    type: DataTypes.NUMBER, // O DataTypes.INTEGER
+    type: DataTypes.INTEGER, 
     allowNull: true // Potrebbe essere null
   },
   createdAt: { // Campi gestiti automaticamente da Sequelize

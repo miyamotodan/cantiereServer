@@ -1,4 +1,6 @@
 import UtilizzoStandard from '../models/UtilizzoStandard.js';
+import LavorazioneAnagrafica from '../models/LavorazioneAnagrafica.js';
+import StrumentoAnagrafica from '../models/StrumentoAnagrafica.js';
 
 // Metodo per creare un nuovo utilizzo standard
 export const createUtilizzoStandard = async (req, res) => {
@@ -21,7 +23,18 @@ export const createUtilizzoStandard = async (req, res) => {
 // Metodo per trovare tutti gli utilizzi standard
 export const findAllUtilizziStandard = async (req, res) => {
   try {
-    const utilizziStandard = await UtilizzoStandard.findAll();
+    const utilizziStandard = await UtilizzoStandard.findAll({
+      include: [
+        {
+          model: LavorazioneAnagrafica,
+          attributes: ['id_lavorazione_anagrafica', 'nome_lavorazione']
+        },
+        {
+          model: StrumentoAnagrafica,
+          attributes: ['id_strumento_anagrafica', 'nome_strumento']
+        }
+      ]
+    });
     res.status(200).json(utilizziStandard);
   } catch (error) {
     console.error('Errore nel recupero degli utilizzi standard:', error);
@@ -32,7 +45,18 @@ export const findAllUtilizziStandard = async (req, res) => {
 // Metodo per trovare un utilizzo standard per ID
 export const findUtilizzoStandardById = async (req, res) => {
   try {
-    const utilizzoStandard = await UtilizzoStandard.findByPk(req.params.id);
+    const utilizzoStandard = await UtilizzoStandard.findByPk(req.params.id, {
+      include: [
+        {
+          model: LavorazioneAnagrafica,
+          attributes: ['id_lavorazione_anagrafica', 'nome_lavorazione']
+        },
+        {
+          model: StrumentoAnagrafica,
+          attributes: ['id_strumento_anagrafica', 'nome_strumento']
+        }
+      ]
+    });
     if (!utilizzoStandard) {
       return res.status(404).json({ message: 'Utilizzo standard non trovato.' });
     }

@@ -36,7 +36,7 @@ curl -X POST \
 curl -X POST \
   http://localhost:3000/partecipazioni-ditta \
   -H "Content-Type: application/json" \
-  -d '{"id_ditta": 1, "id_cantiere":2, "data_inizio_partecipazione":"2025/08/01", "data_fine_partecipazione":null, "ruolo_ditta":"subappalto", "responsabile_cantiere":"ing. C. Rossi", "budget_assegnato":0, "stato_partecipazione":"attiva"}'
+  -d '{"id_ditta": 3, "id_cantiere":3, "data_inizio_partecipazione":"2025/08/01", "data_fine_partecipazione":null, "ruolo_ditta":"subappalto", "responsabile_cantiere":"ing. C. Rossi", "budget_assegnato":0, "stato_partecipazione":"attiva"}'
 
 ## operai
 
@@ -103,8 +103,9 @@ curl -X POST \
   http://localhost:3000/piani-lavoro \
   -H "Content-Type: application/json" \
   -d '{
-    "id_cantiere": 1,
+    "id_cantiere": 3,
     "nome_piano": "Piano di Lavoro per la Posa del Tetto",
+    "descrizione": "Piano di Lavoro per la Posa del Tetto",
     "versione": 1,
     "stato": "Bozza"
   }'
@@ -134,7 +135,7 @@ curl -X POST \
     "id_attivita": 1,
     "id_partecipazione_ditta": 1,
     "notifica_inviata": "2025-08-06T10:00:00Z",
-    "confermata": false,
+    "notifica_confermata": null,
     "note_operaio": "Assegnazione in attesa di conferma da operaio."
   }'
  

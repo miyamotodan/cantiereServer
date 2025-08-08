@@ -17,6 +17,10 @@ const PianoLavoro = sequelize.define('PianoLavoro', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  descrizione: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   versione: {
     type: DataTypes.INTEGER, 
     allowNull: false,

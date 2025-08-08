@@ -58,7 +58,7 @@ const startServer = async () => {
     Cantiere.belongsToMany(Ditta, { through: PartecipazioneDitta, foreignKey: 'id_cantiere' });
 
     Ditta.hasMany(Operaio, { foreignKey: 'id_ditta' });
-    Operaio.belongsTo(Ditta, { foreignKey: 'id_ditta' });
+    Operaio.belongsTo(Ditta, { foreignKey: 'id_ditta', as: 'Ditta' });
     
     Cantiere.hasMany(LavorazioneProgetto, { foreignKey: 'id_cantiere' });
     LavorazioneProgetto.belongsTo(Cantiere, { foreignKey: 'id_cantiere' });
@@ -81,6 +81,9 @@ const startServer = async () => {
     AttivitaPianificata.hasMany(Assegnazione, { foreignKey: 'id_attivita' });
     Assegnazione.belongsTo(AttivitaPianificata, { foreignKey: 'id_attivita' });
 
+    PartecipazioneDitta.belongsTo(Ditta, { foreignKey: 'id_ditta' ,  as: 'Ditta' });
+    PartecipazioneDitta.belongsTo(Cantiere, { foreignKey: 'id_cantiere' });
+    
     PartecipazioneDitta.hasMany(Assegnazione, { foreignKey: 'id_partecipazione_ditta' });
     Assegnazione.belongsTo(PartecipazioneDitta, { foreignKey: 'id_partecipazione_ditta' });
 

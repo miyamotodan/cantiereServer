@@ -1,4 +1,5 @@
 import PianoLavoro from '../models/PianoLavoro.js';
+import Cantiere from '../models/Cantiere.js';
 
 // Metodo per creare un nuovo piano di lavoro
 export const createPianoLavoro = async (req, res) => {
@@ -6,6 +7,7 @@ export const createPianoLavoro = async (req, res) => {
     const newPianoLavoro = await PianoLavoro.create({
       id_cantiere: req.body.id_cantiere,
       nome_piano: req.body.nome_piano,
+      descrizione: req.body.descrizione,
       versione: req.body.versione,
       stato: req.body.stato
     });
@@ -19,7 +21,14 @@ export const createPianoLavoro = async (req, res) => {
 // Metodo per trovare tutti i piani di lavoro
 export const findAllPianiLavoro = async (req, res) => {
   try {
-    const pianiLavoro = await PianoLavoro.findAll();
+    const pianiLavoro = await PianoLavoro.findAll({
+      include: [
+        {
+          model: Cantiere,
+          attributes: ['id_cantiere', 'nome']
+        }
+      ]
+    });
     res.status(200).json(pianiLavoro);
   } catch (error) {
     console.error('Errore nel recupero dei piani di lavoro:', error);
@@ -30,7 +39,14 @@ export const findAllPianiLavoro = async (req, res) => {
 // Metodo per trovare un piano di lavoro per ID
 export const findPianoLavoroById = async (req, res) => {
   try {
-    const pianoLavoro = await PianoLavoro.findByPk(req.params.id);
+    const pianoLavoro = await PianoLavoro.findByPk(req.params.id, {
+      include: [
+        {
+          model: Cantiere,
+          attributes: ['id_cantiere', 'nome']
+        }
+      ]
+    });
     if (!pianoLavoro) {
       return res.status(404).json({ message: 'Piano di lavoro non trovato.' });
     }

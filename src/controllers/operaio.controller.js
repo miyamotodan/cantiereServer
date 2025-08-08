@@ -1,4 +1,5 @@
 import Operaio from '../models/Operaio.js';
+import Ditta from '../models/Ditta.js';
 
 // Metodo per creare un nuovo operaio
 export const createOperaio = async (req, res) => {
@@ -24,7 +25,15 @@ export const createOperaio = async (req, res) => {
 // Metodo per trovare tutti gli operai
 export const findAllOperai = async (req, res) => {
   try {
-    const operai = await Operaio.findAll();
+    const operai = await Operaio.findAll({
+      include: [
+        {
+          model: Ditta,
+          as: 'Ditta',
+          attributes: ['id_ditta', 'ragione_sociale']
+        }
+      ]
+    });
     res.status(200).json(operai);
   } catch (error) {
     console.error('Errore nel recupero degli operai:', error);
@@ -35,7 +44,15 @@ export const findAllOperai = async (req, res) => {
 // Metodo per trovare un operaio per ID
 export const findOperaioById = async (req, res) => {
   try {
-    const operaio = await Operaio.findByPk(req.params.id);
+    const operaio = await Operaio.findByPk(req.params.id, {
+      include: [
+        {
+          model: Ditta,
+          as: 'Ditta',
+          attributes: ['id_ditta', 'ragione_sociale']
+        }
+      ]
+    });
     if (!operaio) {
       return res.status(404).json({ message: 'Operaio non trovato.' });
     }

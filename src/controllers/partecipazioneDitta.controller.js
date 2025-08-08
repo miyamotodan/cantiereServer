@@ -1,4 +1,6 @@
 import PartecipazioneDitta from "../models/PartecipazioneDitta.js";
+import Ditta from '../models/Ditta.js';
+import Cantiere from '../models/Cantiere.js';
 
 // Metodo per creare una nuova partecipazione ditta
 export const createPartecipazioneDitta = async (req, res) => {
@@ -23,7 +25,19 @@ export const createPartecipazioneDitta = async (req, res) => {
 // Metodo per trovare tutte le partecipazioni ditta
 export const findAllPartecipazioniDitta = async (req, res) => {
   try {
-    const partecipazioniDitta = await PartecipazioneDitta.findAll();
+    const partecipazioniDitta = await PartecipazioneDitta.findAll({
+      include: [
+        {
+          model: Ditta,
+          as: 'Ditta',
+          attributes: ['id_ditta', 'ragione_sociale']
+        },
+        {
+          model: Cantiere,
+          attributes: ['id_cantiere', 'nome']
+        }
+      ]
+    });
     res.status(200).json(partecipazioniDitta);
   } catch (error) {
     console.error('Errore nel recupero delle partecipazioni ditta:', error);
@@ -34,7 +48,19 @@ export const findAllPartecipazioniDitta = async (req, res) => {
 // Metodo per trovare una partecipazione ditta per ID
 export const findPartecipazioneDittaById = async (req, res) => {
   try {
-    const partecipazioneDitta = await PartecipazioneDitta.findByPk(req.params.id);
+    const partecipazioneDitta = await PartecipazioneDitta.findByPk(req.params.id, {
+      include: [
+        {
+          model: Ditta,
+          as: 'Ditta',
+          attributes: ['id_ditta', 'ragione_sociale']
+        },
+        {
+          model: Cantiere,
+          attributes: ['id_cantiere', 'nome']
+        }
+      ]
+    });
     if (!partecipazioneDitta) {
       return res.status(404).json({ message: 'Partecipazione ditta non trovata.' });
     }

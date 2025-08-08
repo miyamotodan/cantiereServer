@@ -1,4 +1,6 @@
 import LavorazioneProgetto from '../models/LavorazioneProgetto.js';
+import Cantiere from '../models/Cantiere.js';
+import LavorazioneAnagrafica from '../models/LavorazioneAnagrafica.js';
 
 // Metodo per creare una nuova lavorazione di progetto
 export const createLavorazioneProgetto = async (req, res) => {
@@ -22,7 +24,18 @@ export const createLavorazioneProgetto = async (req, res) => {
 // Metodo per trovare tutte le lavorazioni di progetto
 export const findAllLavorazioniProgetto = async (req, res) => {
   try {
-    const lavorazioniProgetto = await LavorazioneProgetto.findAll();
+    const lavorazioniProgetto = await LavorazioneProgetto.findAll({
+      include: [
+        {
+          model: Cantiere,
+          attributes: ['id_cantiere', 'nome']
+        },
+        {
+          model: LavorazioneAnagrafica,
+          attributes: ['id_lavorazione_anagrafica', 'nome_lavorazione']
+        }
+      ]
+    });
     res.status(200).json(lavorazioniProgetto);
   } catch (error) {
     console.error('Errore nel recupero delle lavorazioni di progetto:', error);
@@ -33,7 +46,18 @@ export const findAllLavorazioniProgetto = async (req, res) => {
 // Metodo per trovare una lavorazione di progetto per ID
 export const findLavorazioneProgettoById = async (req, res) => {
   try {
-    const lavorazioneProgetto = await LavorazioneProgetto.findByPk(req.params.id);
+    const lavorazioneProgetto = await LavorazioneProgetto.findByPk(req.params.id, {
+      include: [
+        {
+          model: Cantiere,
+          attributes: ['id_cantiere', 'nome']
+        },
+        {
+          model: LavorazioneAnagrafica,
+          attributes: ['id_lavorazione_anagrafica', 'nome_lavorazione']
+        }
+      ]
+    });
     if (!lavorazioneProgetto) {
       return res.status(404).json({ message: 'Lavorazione di progetto non trovata.' });
     }

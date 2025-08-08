@@ -24,10 +24,9 @@ const Assegnazione = sequelize.define('Assegnazione', {
     type: DataTypes.DATE,
     allowNull: true,
   },
-  confermata: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
+  notifica_confermata: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
   note_operaio: {
     type: DataTypes.STRING,

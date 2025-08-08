@@ -1,4 +1,7 @@
 import Assegnazione from '../models/Assegnazione.js';
+import Operaio from '../models/Operaio.js';
+import AttivitaPianificata from '../models/AttivitaPianificata.js';
+import PartecipazioneDitta from '../models/PartecipazioneDitta.js';
 
 // Metodo per creare una nuova assegnazione
 export const createAssegnazione = async (req, res) => {
@@ -8,7 +11,7 @@ export const createAssegnazione = async (req, res) => {
       id_attivita: req.body.id_attivita,
       id_partecipazione_ditta: req.body.id_partecipazione_ditta,
       notifica_inviata: req.body.notifica_inviata ? new Date(req.body.notifica_inviata) : null,
-      confermata: req.body.confermata,
+      notifica_confermata: req.body.notifica_confermata ? new Date(req.body.notifica_confermata) : null,
       note_operaio: req.body.note_operaio
     });
     res.status(201).json(newAssegnazione);
@@ -21,7 +24,22 @@ export const createAssegnazione = async (req, res) => {
 // Metodo per trovare tutte le assegnazioni
 export const findAllAssegnazioni = async (req, res) => {
   try {
-    const assegnazioni = await Assegnazione.findAll();
+    const assegnazioni = await Assegnazione.findAll({
+      include: [
+        {
+          model: Operaio,
+          attributes: ['id_operaio', 'nome', 'cognome']
+        },
+        {
+          model: AttivitaPianificata,
+          attributes: ['id_attivita', 'note', 'stato']
+        },
+        {
+          model: PartecipazioneDitta,
+          attributes: ['id_partecipazione', 'ruolo_ditta']
+        }
+      ]
+    });
     res.status(200).json(assegnazioni);
   } catch (error) {
     console.error('Errore nel recupero delle assegnazioni:', error);
@@ -32,7 +50,22 @@ export const findAllAssegnazioni = async (req, res) => {
 // Metodo per trovare un'assegnazione per ID
 export const findAssegnazioneById = async (req, res) => {
   try {
-    const assegnazione = await Assegnazione.findByPk(req.params.id);
+    const assegnazione = await Assegnazione.findByPk(req.params.id, {
+      include: [
+        {
+          model: Operaio,
+          attributes: ['id_operaio', 'nome', 'cognome']
+        },
+        {
+          model: AttivitaPianificata,
+          attributes: ['id_attivita', 'note', 'stato']
+        },
+        {
+          model: PartecipazioneDitta,
+          attributes: ['id_partecipazione', 'ruolo_ditta']
+        }
+      ]
+    });
     if (!assegnazione) {
       return res.status(404).json({ message: 'Assegnazione non trovata.' });
     }

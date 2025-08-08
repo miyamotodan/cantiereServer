@@ -1,4 +1,6 @@
 import AttivitaPianificata from '../models/AttivitaPianificata.js';
+import PianoLavoro from '../models/PianoLavoro.js';
+import LavorazioneProgetto from '../models/LavorazioneProgetto.js';
 
 // Metodo per creare una nuova attività pianificata
 export const createAttivitaPianificata = async (req, res) => {
@@ -22,7 +24,18 @@ export const createAttivitaPianificata = async (req, res) => {
 // Metodo per trovare tutte le attività pianificate
 export const findAllAttivitaPianificata = async (req, res) => {
   try {
-    const attivitaPianificata = await AttivitaPianificata.findAll();
+    const attivitaPianificata = await AttivitaPianificata.findAll({
+      include: [
+        {
+          model: PianoLavoro,
+          attributes: ['id_piano', 'nome_piano']
+        },
+        {
+          model: LavorazioneProgetto,
+          attributes: ['id_lavorazione_progetto', 'nome_specifico']
+        }
+      ]
+    });
     res.status(200).json(attivitaPianificata);
   } catch (error) {
     console.error('Errore nel recupero delle attività pianificate:', error);
@@ -33,7 +46,18 @@ export const findAllAttivitaPianificata = async (req, res) => {
 // Metodo per trovare un'attività pianificata per ID
 export const findAttivitaPianificataById = async (req, res) => {
   try {
-    const attivitaPianificata = await AttivitaPianificata.findByPk(req.params.id);
+    const attivitaPianificata = await AttivitaPianificata.findByPk(req.params.id, {
+      include: [
+        {
+          model: PianoLavoro,
+          attributes: ['id_piano', 'nome_piano']
+        },
+        {
+          model: LavorazioneProgetto,
+          attributes: ['id_lavorazione_progetto', 'nome_specifico']
+        }
+      ]
+    });
     if (!attivitaPianificata) {
       return res.status(404).json({ message: 'Attività pianificata non trovata.' });
     }
